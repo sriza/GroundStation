@@ -1,6 +1,0 @@
-{
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "/home/sriza/Documents/javafx-sdk-16/lib/javafx.base.jar"
-    ]
-}

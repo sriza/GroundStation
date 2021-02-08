@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="929.0" prefWidth="1860.0" style="-fx-background-color: #020632;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="51.0" layoutY="103.0" prefHeight="716.0" prefWidth="173.0" style="-fx-background-color: #595656; -fx-opacity: 55%; -fx-border-color: #D1D2D2; -fx-border-radius: 15; -fx-background-radius: 15;" />
+      <AnchorPane layoutX="257.0" layoutY="103.0" prefHeight="716.0" prefWidth="1205.0" style="-fx-background-color: #595656; -fx-opacity: 55%; -fx-border-color: #D1D2D2; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <children>
+            <TableView fx:id="maintable" layoutX="61.0" layoutY="43.0" prefHeight="655.0" prefWidth="525.0">
+              <columns>
+                <TableColumn fx:id="maintime" prefWidth="89.0" text="TIME" />
+                <TableColumn fx:id="mainaltitude" prefWidth="131.0" text="ALTITUDE" />
+                  <TableColumn fx:id="mainvelocity" prefWidth="146.0" text="VELOCITY" />
+                  <TableColumn fx:id="mainacceleration" prefWidth="158.0" text="ACCELERATION" />
+              </columns>
+            </TableView>
+            <TableView fx:id="batteryone" layoutX="614.0" layoutY="85.0" prefHeight="258.0" prefWidth="549.0">
+               <columns>
+                  <TableColumn fx:id="batteryonetime" prefWidth="130.0" text="TIME" />
+                  <TableColumn fx:id="batteryoneper" prefWidth="202.0" text="BATTERY PERCENTAGE" />
+                  <TableColumn fx:id="batteryonetemp" prefWidth="216.0" text="TEMPERATURE" />
+               </columns>
+            </TableView>
+            <TableView fx:id="batterytwo" layoutX="614.0" layoutY="423.0" prefHeight="271.0" prefWidth="549.0">
+               <columns>
+                  <TableColumn fx:id="batterytwotime" prefWidth="130.0" text="TIME" />
+                  <TableColumn fx:id="batterytwoper" prefWidth="203.0" text="BATTERY PERCENTAGE" />
+                  <TableColumn fx:id="batterytwotemp" prefWidth="215.0" text="TEMPERATURE" />
+               </columns>
+            </TableView>
+            <Label layoutX="632.0" layoutY="43.0" text="BATTERY ONE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="632.0" layoutY="382.0" text="BATTERY TWO" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane layoutX="45.0" layoutY="884.0" prefHeight="77.0" prefWidth="1794.0" style="-fx-background-color: #595656; -fx-opacity: 55%; -fx-border-color: #D1D2D2; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <children>
+            <Label layoutX="1596.0" layoutY="14.0" text="SIGNAL" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="1084.0" layoutY="15.0" prefHeight="26.0" prefWidth="102.0" text="APOGEE" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="1324.0" layoutY="16.0" prefHeight="26.0" prefWidth="149.0" text="SATELLITES" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="893.0" layoutY="13.0" prefHeight="26.0" prefWidth="40.0" text="RE" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="653.0" layoutY="13.0" prefHeight="26.0" prefWidth="102.0" text="AIR" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="395.0" layoutY="15.0" prefHeight="26.0" prefWidth="67.0" text="TIME" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="signallabel" layoutX="1616.0" layoutY="54.0" text="ON" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="satlabel" layoutX="1382.0" layoutY="54.0" text="0" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="apogeelabel" layoutX="1086.0" layoutY="55.0" text="10000 ft" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="relabel" layoutX="875.0" layoutY="56.0" text="FALSE" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="airlabel" layoutX="640.0" layoutY="57.0" text="FALSE" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="timelabel" layoutX="414.0" layoutY="55.0" text="0" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="activestagelabel" layoutX="90.0" layoutY="52.0" text="0" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="59.0" layoutY="18.0" prefHeight="26.0" prefWidth="201.0" text="ACTIVE STAGE" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane layoutX="1492.0" layoutY="106.0" prefHeight="716.0" prefWidth="342.0" style="-fx-background-color: #595656; -fx-opacity: 55%; -fx-border-color: #D1D2D2; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <children>
+            <AnchorPane layoutX="22.0" layoutY="14.0" prefHeight="680.0" prefWidth="298.0" style="-fx-background-color: #452d2d; -fx-opacity: 55%; -fx-border-color: #452d2d; -fx-border-radius: 15; -fx-background-radius: 15;">
+               <children>
+                  <Label layoutX="23.0" layoutY="34.0" text="ACCELERATION" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="accelerationlabel" layoutX="48.0" layoutY="65.0" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="28.0" layoutY="100.0" text="VELOCITY" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="velocitylabel" layoutX="55.0" layoutY="130.0" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="altitudelabel" layoutX="56.0" layoutY="222.0" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="30.0" layoutY="192.0" text="ATTITUDE" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="28.0" layoutY="280.0" text="PRESSURE" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pressuregraphlabel" layoutX="61.0" layoutY="318.0" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="32.0" layoutY="467.0" prefHeight="26.0" prefWidth="215.0" text="BATTERY " textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="batterygraphlabel2" layoutX="68.0" layoutY="511.0" prefHeight="26.0" prefWidth="68.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="31.0" layoutY="566.0" prefHeight="26.0" prefWidth="215.0" text="BATTERY " textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="batterygraphlabel1" layoutX="66.0" layoutY="612.0" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="28.0" layoutY="373.0" text="ALTITUDE" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="tempgraphlabel" layoutX="67.0" layoutY="422.0" prefHeight="26.0" prefWidth="67.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="77.0" prefWidth="1892.0" style="-fx-background-color: #59565D;">
+         <children>
+            <Label layoutX="107.0" layoutY="7.0" text="Garuda" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="49.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="60.0" fitWidth="101.0" layoutX="35.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+            <Hyperlink fx:id="loadbutton" layoutX="1722.0" layoutY="27.0" onAction="#loadGraphView" text="LOAD GRAPH" textFill="#fcfcfc">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

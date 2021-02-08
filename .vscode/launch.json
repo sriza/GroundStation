@@ -1,23 +1,13 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    
-        {
-            "type": "java",
-            "name": "Launch Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        },
         {
             "type": "java",
             "name": "Launch Main",
             "request": "launch",
-            "vmArgs": "--module-path /home/sriza/Documents/javafx-sdk-16/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "sample.Main",
-            "projectName": "ORASS_GS_691aeb21"
+            "mainClass": "main.java.Main",
+            "projectName": "ORASS_GS_691aeb21",
+            "vmArgs": "--module-path /home/sriza/Documents/javafx-sdk-16/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.media,javafx.web --add-reads javafx.graphics=ALL-UNNAMED --add-opens javafx.controls/com.sun.javafx.charts=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio.common=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.css=ALL-UNNAMED --add-opens javafx.base/com.sun.javafx.runtime=ALL-UNNAMED -Dprism.forceGPU=true -Dcom.sun.javafx.experimental.embedded.3d=true -Dprism.glDepthSize=24",
         }
     ]
 }

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.dlsc.gmapsfx.GoogleMapView?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.PerspectiveCamera?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Cylinder?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="929.0" prefWidth="1860.0" style="-fx-background-color: #020632;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="51.0" layoutY="103.0" prefHeight="716.0" prefWidth="173.0" style="-fx-background-color: #595656; -fx-opacity: 55%; -fx-border-color: #D1D2D2; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="1.0" fill="#9a9a9a" height="682.0" layoutX="38.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="6.0" />
+            <Circle fx:id="liftnode" fill="#c0c1c3" layoutX="41.0" layoutY="686.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="burnoutnode" fill="#c0c1c3" layoutX="40.0" layoutY="523.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="apogeenode" fill="#c0c1c3" layoutX="41.0" layoutY="345.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="chutenode" fill="#c0c1c3" layoutX="41.0" layoutY="210.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="landingnode" fill="#c0c1c3" layoutX="43.0" layoutY="22.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label layoutX="74.0" layoutY="673.0" prefHeight="26.0" prefWidth="94.0" text="LIFT OFF&#10;" textFill="#2ee540">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="511.0" prefHeight="52.0" prefWidth="94.0" text="MOTOR&#10;BURNOUT&#10;&#10;" textFill="#6efa7c">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="323.0" prefHeight="52.0" prefWidth="94.0" text="APOGEE&#10;&#10;&#10;" textFill="#6efa7c">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="69.0" layoutY="174.0" prefHeight="77.0" prefWidth="94.0" text="MAIN&#10;CHUTE &#10;DEPLOYMENT&#10;&#10;&#10;&#10;" textFill="#6efa7c">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="15.0" prefHeight="35.0" prefWidth="94.0" text="LANDING&#10;&#10;&#10;" textFill="#6efa7c">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane layoutX="1053.0" layoutY="105.0" prefHeight="379.0" prefWidth="412.0" style="-fx-background-color: #595656; -fx-opacity: 55%; -fx-border-color: #D1D2D2; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <children>
+            <AnchorPane layoutX="277.0" layoutY="24.0" prefHeight="98.0" prefWidth="121.0" style="-fx-background-color: #452d2d; -fx-opacity: 55%; -fx-border-color: #452d2d; -fx-border-radius: 15; -fx-background-radius: 15;" />
+            <Label layoutX="289.0" layoutY="35.0" text="X :" textFill="#fcf9f9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="290.0" layoutY="60.0" text="Y :" textFill="#fcf9f9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="289.0" layoutY="85.0" text="Z :" textFill="#fcf9f9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="327.0" layoutY="36.0" text="0" textFill="#fcf9f9" fx:id="xtransformlabel">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="ytransformlabel" layoutX="326.0" layoutY="62.0" text="0" textFill="#fcf9f9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="ztransformlabel" layoutX="326.0" layoutY="86.0" text="0" textFill="#fcf9f9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Group layoutX="124.0" layoutY="196.0">
+               <children>
+                  <Cylinder fx:id="cylindermodal" cullFace="FRONT" drawMode="LINE" height="250.0" layoutX="35.0" layoutY="14.0" radius="60.0" />
+                  <PerspectiveCamera fx:id="camera" farClip="100000.0" fieldOfView="-450.0" />
+               </children>
+            </Group>
+         </children></AnchorPane>
+      <AnchorPane layoutX="249.0" layoutY="502.0" prefHeight="316.0" prefWidth="1587.0" style="-fx-background-color: #595656; -fx-opacity: 55%; -fx-border-color: #D1D2D2; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <children>
+            <AnchorPane layoutX="23.0" layoutY="24.0" prefHeight="269.0" prefWidth="455.0" style="-fx-background-color: #452d2d; -fx-opacity: 55%; -fx-border-color: #452d2d; -fx-border-radius: 15; -fx-background-radius: 15;">
+               <children>
+                  <LineChart fx:id="temperatureLineGraph" layoutX="111.0" layoutY="19.0" prefHeight="220.0" prefWidth="362.0">
+                    <xAxis>
+                      <NumberAxis side="BOTTOM" tickLabelFill="WHITE" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" tickLabelFill="#c3c2c2" />
+                    </yAxis>
+                  </LineChart>
+                  <Label fx:id="tempgraphlabel" layoutX="41.0" layoutY="210.0" prefHeight="26.0" prefWidth="67.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="544.0" layoutY="26.0" prefHeight="269.0" prefWidth="490.0" style="-fx-background-color: #452d2d; -fx-opacity: 55%; -fx-border-color: #452d2d; -fx-border-radius: 15; -fx-background-radius: 15;">
+               <children>
+                  <LineChart fx:id="pressureLineGraph" layoutX="135.0" layoutY="14.0" prefHeight="220.0" prefWidth="336.0">
+                    <xAxis>
+                      <NumberAxis side="BOTTOM" tickLabelFill="WHITE" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" tickLabelFill="#c3c2c2" />
+                    </yAxis>
+                  </LineChart>
+                  <Label fx:id="pressuregraphlabel" layoutX="39.0" layoutY="208.0" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="1072.0" layoutY="27.0" prefHeight="269.0" prefWidth="490.0" style="-fx-background-color: #452d2d; -fx-opacity: 55%; -fx-border-color: #452d2d; -fx-border-radius: 15; -fx-background-radius: 15;">
+               <children>
+                  <LineChart fx:id="batteryLineGraph" layoutX="131.0" layoutY="25.0" prefHeight="220.0" prefWidth="336.0">
+                     <xAxis>
+                      <NumberAxis side="BOTTOM" tickLabelFill="WHITE" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" tickLabelFill="#c3c2c2" />
+                    </yAxis>
+                  </LineChart>
+                  <Label fx:id="batterygraphlabel1" layoutX="56.0" layoutY="207.0" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="batterygraphlabel2" layoutX="52.0" layoutY="95.0" prefHeight="26.0" prefWidth="68.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="248.0" layoutY="104.0" prefHeight="379.0" prefWidth="771.0" style="-fx-background-color: #595656; -fx-opacity: 55%; -fx-border-color: #D1D2D2; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <children>
+            <GoogleMapView fx:id="googleMapView" layoutX="5.0" layoutY="6.0" prefHeight="367.0" prefWidth="761.0" />
+            <AnchorPane layoutX="599.0" layoutY="18.0" prefHeight="77.0" prefWidth="166.0" style="-fx-background-color: #452d2d; -fx-opacity: 55%; -fx-border-color: #452d2d; -fx-border-radius: 15; -fx-background-radius: 15;" />
+            <Label layoutX="612.0" layoutY="30.0" prefHeight="21.0" prefWidth="49.0" text="LAT :" textFill="#fcf9f9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="612.0" layoutY="55.0" prefHeight="21.0" prefWidth="68.0" text="LONG :" textFill="#fcf9f9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="latlabel" layoutX="682.0" layoutY="31.0" text="0" textFill="#fcf9f9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="longlabel" layoutX="683.0" layoutY="57.0" text="0" textFill="#fcf9f9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane layoutX="45.0" layoutY="844.0" prefHeight="135.0" prefWidth="1794.0" style="-fx-background-color: #595656; -fx-opacity: 55%; -fx-border-color: #D1D2D2; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <children>
+            <Label layoutX="1596.0" layoutY="46.0" text="SIGNAL" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="1084.0" layoutY="47.0" prefHeight="26.0" prefWidth="102.0" text="APOGEE" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="1324.0" layoutY="48.0" prefHeight="26.0" prefWidth="149.0" text="SATELLITES" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="888.0" layoutY="44.0" prefHeight="26.0" prefWidth="40.0" text="RE" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="659.0" layoutY="45.0" prefHeight="26.0" prefWidth="102.0" text="AIR" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="395.0" layoutY="47.0" prefHeight="26.0" prefWidth="67.0" text="TIME" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="signallabel" layoutX="1616.0" layoutY="86.0" text="ON" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="satlabel" layoutX="1382.0" layoutY="86.0" text="0" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="apogeelabel" layoutX="1086.0" layoutY="87.0" text="10000 ft" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="relabel" layoutX="875.0" layoutY="88.0" text="FALSE" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="airlabel" layoutX="640.0" layoutY="89.0" text="FALSE" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="timelabel" layoutX="414.0" layoutY="87.0" text="0" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="activestagelabel" layoutX="90.0" layoutY="84.0" text="0" textFill="#fcf9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="59.0" layoutY="50.0" prefHeight="26.0" prefWidth="201.0" text="ACTIVE STAGE" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane layoutX="1492.0" layoutY="106.0" prefHeight="379.0" prefWidth="342.0" style="-fx-background-color: #595656; -fx-opacity: 55%; -fx-border-color: #D1D2D2; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <children>
+            <AnchorPane layoutX="26.0" layoutY="17.0" prefHeight="339.0" prefWidth="298.0" style="-fx-background-color: #452d2d; -fx-opacity: 55%; -fx-border-color: #452d2d; -fx-border-radius: 15; -fx-background-radius: 15;">
+               <children>
+                  <Label layoutX="23.0" layoutY="34.0" text="ACCELERATION" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="accelerationlabel" layoutX="48.0" layoutY="70.0" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="29.0" layoutY="126.0" text="VELOCITY" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="velocitylabel" layoutX="56.0" layoutY="163.0" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="altitudelabel" layoutX="61.0" layoutY="261.0" text="0" textFill="#fcf9f9">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="31.0" layoutY="218.0" text="ALTITUDE" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1.0" prefHeight="77.0" prefWidth="1892.0" style="-fx-background-color: #59565D;">
+         <children>
+            <Hyperlink fx:id="loadbutton" layoutX="1722.0" layoutY="27.0" onAction="#loadTableView" text="LOAD TABLE" textFill="#fcfcfc">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Hyperlink>
+            <Label layoutX="107.0" layoutY="7.0" text="Garuda" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="49.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="60.0" fitWidth="101.0" layoutX="35.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

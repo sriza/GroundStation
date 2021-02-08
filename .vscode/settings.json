@@ -1,13 +1,26 @@
 {
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "/home/sriza/Documents/javafx-sdk-16/lib/javafx.base.jar",
-        "/home/sriza/Documents/javafx-sdk-16/lib/javafx.controls.jar",
-        "/home/sriza/Documents/javafx-sdk-16/lib/javafx.fxml.jar",
-        "/home/sriza/Documents/javafx-sdk-16/lib/javafx.graphics.jar",
-        "/home/sriza/Documents/javafx-sdk-16/lib/javafx.media.jar",
-        "/home/sriza/Documents/javafx-sdk-16/lib/javafx.swing.jar",
-        "/home/sriza/Documents/javafx-sdk-16/lib/javafx.web.jar",
-        "/home/sriza/Documents/javafx-sdk-16/lib/javafx-swt.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "/home/sriza/ground_station/jSSC-2.8.0-Release/jssc.jar",
+            "/home/sriza/ground_station/logback-classic-1.2.1.jar",
+            "/home/sriza/ground_station/logback-core-1.2.1.jar",
+            "/home/sriza/ground_station/slf4j-api-1.7.23.jar",
+            "/home/sriza/ground_station/javafx-sdk-11.0.2/lib/javafx.web.jar",
+            "/home/sriza/ground_station/json-20201115.jar",
+            "/home/sriza/Documents/javafx-sdk-16/lib/javafx.base.jar",
+            "/home/sriza/Documents/javafx-sdk-16/lib/javafx.controls.jar",
+            "/home/sriza/Documents/javafx-sdk-16/lib/javafx.fxml.jar",
+            "/home/sriza/Documents/javafx-sdk-16/lib/javafx.graphics.jar",
+            "/home/sriza/Documents/javafx-sdk-16/lib/javafx.media.jar",
+            "/home/sriza/Documents/javafx-sdk-16/lib/javafx.swing.jar",
+            "/home/sriza/Documents/javafx-sdk-16/lib/javafx.web.jar",
+            "/home/sriza/Documents/javafx-sdk-16/lib/javafx-swt.jar",
+            "/home/sriza/ground_station/GMapsFX-11.0.1.jar"
+        ],
+        "exclude": [
+            "/home/sriza/ground_station/gson.jar",
+            "/home/sriza/ground_station/javafx-sdk-11.0.2/lib/javafx-swt.jar"
+        ]
+    }
 }
