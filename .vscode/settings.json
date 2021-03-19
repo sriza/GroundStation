@@ -6,7 +6,6 @@
             "/home/sriza/ground_station/logback-classic-1.2.1.jar",
             "/home/sriza/ground_station/logback-core-1.2.1.jar",
             "/home/sriza/ground_station/slf4j-api-1.7.23.jar",
-            "/home/sriza/ground_station/javafx-sdk-11.0.2/lib/javafx.web.jar",
             "/home/sriza/ground_station/json-20201115.jar",
             "/home/sriza/Documents/javafx-sdk-16/lib/javafx.base.jar",
             "/home/sriza/Documents/javafx-sdk-16/lib/javafx.controls.jar",

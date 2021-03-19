@@ -2,6 +2,7 @@ package main.java.model;
 
 import jssc.*;
 import main.java.controller.DashboardController;
+import main.java.controller.FileStorageController;
 import main.java.controller.TableController;
 import javafx.application.Platform;
 import org.json.JSONObject;
@@ -26,7 +27,7 @@ public class SerialCommunication implements SerialPortEventListener {
         disConnect();
         serialPort=new SerialPort(portName);
         serialPort.openPort();
-        serialPort.setParams(SerialPort.BAUDRATE_115200,SerialPort.DATABITS_8,SerialPort.STOPBITS_1,0);
+        serialPort.setParams(SerialPort.BAUDRATE_9600,SerialPort.DATABITS_8,SerialPort.STOPBITS_1,0);
         int mask = SerialPort.MASK_RXCHAR; 
         serialPort.setEventsMask(mask);
         serialPort.addEventListener(this::serialEvent);
@@ -39,6 +40,8 @@ public class SerialCommunication implements SerialPortEventListener {
                 try {
                     serialPort.removeEventListener();
                     serialPort.closePort();
+                    FileStorageController.getFileInstance().storeData(new JSONObject(buffer));
+
                     System.out.println("Disconnected");
                 } catch (SerialPortException e) {
                     e.printStackTrace();
@@ -53,20 +56,23 @@ public class SerialCommunication implements SerialPortEventListener {
         if(event.isRXCHAR()) {
             try 
             {
-                String data = serialPort.readString();
-                buffer= buffer+data;
+                String data = serialPort.readString(1);
 
-                if (!data.equals("")) {
-                          
-                    Platform.runLater(new Runnable() {
+                if(data.equals("{"))
+                {
+                    buffer = data;
+                }
+
+                if (!data.equals("") && buffer.startsWith("{") && !data.equals("{") ) {
+                        buffer= buffer+data;
+                        Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            if(data.endsWith("end1 ")){
-                                if(countOccurences(buffer, "end1")==1 && buffer.startsWith("{")){
-                                    DashboardController.getDashboardInstance().plotData(new JSONObject(buffer.replace(" end1 ","")));
+                            if(data.equals("}")){
+                                // System.out.println(buffer);
+                                    DashboardController.getDashboardInstance().plotData(new JSONObject(buffer));
+                                    FileStorageController.getFileInstance().storeData(new JSONObject(buffer));
                                     // TableController.getTableInstance().plotData(new JSONObject(buffer.replace(" end1 ","")));
-                                }
-
                                 buffer = "";
                             }
                         }

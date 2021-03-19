@@ -7,6 +7,7 @@ import javafx.scene.chart.XYChart;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.scene.PerspectiveCamera;
 import javax.swing.GroupLayout.Group;
 
@@ -24,10 +25,10 @@ import com.dlsc.gmapsfx.javascript.object.GoogleMap;
 import com.dlsc.gmapsfx.javascript.object.LatLong;
 import com.dlsc.gmapsfx.javascript.object.MapOptions;
 import com.dlsc.gmapsfx.javascript.object.MapTypeIdEnum;
-import java.text.DecimalFormat;
-import javafx.scene.web.WebView;
-import com.dlsc.gmapsfx.MapComponentInitializedListener;
-import com.dlsc.gmapsfx.service.directions.DirectionsServiceCallback;
+// import java.text.DecimalFormat;
+// import javafx.scene.web.WebView;
+// import com.dlsc.gmapsfx.MapComponentInitializedListener;
+// import com.dlsc.gmapsfx.service.directions.DirectionsServiceCallback;
 
 //3d modal
 import javafx.scene.shape.Cylinder;
@@ -37,13 +38,23 @@ import com.dlsc.gmapsfx.javascript.object.Marker;
 //initializable
 import javafx.fxml.Initializable;
 
+//flight computer
+import javafx.scene.shape.Circle;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable{
 
-    private static Boolean origin = false;
+    private static Boolean origin = true;
+    private static Boolean init = true;
+    private static Double altitudeA = 0.0;
+    private static Double altitudeB = 0.0;
+    private static Boolean parachute= false;
+    private static Boolean launch = true;
+    private static Long startTime;
+    private static Boolean ignitecheck = true;
 	
     @FXML
     private LineChart<Number, Number> temperatureLineGraph;
@@ -125,6 +136,23 @@ public class DashboardController implements Initializable{
     @FXML
     private Group axisgroup;
 
+    //flight computer
+    @FXML
+    private Circle liftnode;
+
+    @FXML
+    private Circle burnoutnode;
+
+    @FXML
+    private Circle apogeenode;
+
+    @FXML
+    private Circle chutenode;
+
+    @FXML
+    private Circle landingnode;
+
+    //3d modal
     @FXML
     private Cylinder cylinder;
 
@@ -145,14 +173,23 @@ public class DashboardController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeGraphs();     
-        this.googleMapView.addMapInitializedListener(() -> configureMap());
+        // this.googleMapView.addMapInitializedListener(() -> configureMap());
      }
 
     //updatedata
     public void plotData(JSONObject data){
+
+        if(ignitecheck && origin && data.getBoolean("ignite")){
+            ignitecheck = false;
+            startTime = System.nanoTime();
+        }
+
+        data.put("time", Double.parseDouble(""+System.currentTimeMillis()));
+        // data.put("time",System.currentTimeMillis());
         addGraphData(data);
         updateLabel(data);
         // updateMap(data);
+        updateFlightComputer(data);
     }
 
     //graphs
@@ -211,9 +248,9 @@ public class DashboardController implements Initializable{
 	
     public void addGraphData(JSONObject data) {
         try{
-            addTemperatureData(data.getDouble("time"), data.getDouble("temp") );
-            addPressureData(data.getDouble("time"), data.getDouble("pressure") );
-            addBatteryData(data.getDouble("time"), data.getJSONObject("bat").getDouble("per") );
+            addTemperatureData(data.getDouble("time")/1000, data.getDouble("temp") );
+            addPressureData(data.getDouble("time")/1000, data.getDouble("pressure") );
+            // addBatteryData(data.getDouble("time"), data.getJSONObject("bat").getDouble("per") );
         } catch (Exception ex){
             System.out.print("add graph data:" +ex);
         }
@@ -258,12 +295,14 @@ public class DashboardController implements Initializable{
 
         // relabel.setText(data.getBoolean("re")?"TRUE":"FALSE");
         // airlabel.setText(data.getBoolean("air")?"TRUE":"FALSE");
-        timelabel.setText("T + "+data.getDouble("time"));
+        if(!ignitecheck){
+            timelabel.setText("T + "+(data.getDouble("time")-startTime/1000000));
+        }
 
         tempgraphlabel.setText(data.getDouble("temp")+"°");
         pressuregraphlabel.setText(data.getDouble("pressure")+" ft");
-        batterygraphlabel1.setText(data.getJSONObject("bat").getDouble("per")+" ft");
-        batterygraphlabel2.setText(data.getJSONObject("bat").getDouble("per")+" ft");
+        // batterygraphlabel1.setText(data.getJSONObject("bat").getDouble("per")+" ft");
+        // batterygraphlabel2.setText(data.getJSONObject("bat").getDouble("per")+" ft");
     }
 
     //google map
@@ -286,11 +325,12 @@ public class DashboardController implements Initializable{
 
     protected void updateMap(JSONObject data){
         if(this.map != null) {
-            if(!origin){
+            if(origin){
                 MarkerOptions launchsite = new MarkerOptions();
                 launchsite.position(new LatLong(data.getDouble("lat"), data.getDouble("lon")));
                 Marker launch = new Marker(launchsite);
                 map.addMarker( launch );
+                origin = false;
             } else {
                 MarkerOptions launchsite = new MarkerOptions();
                 launchsite.position(new LatLong(data.getDouble("lat"), data.getDouble("lon")));
@@ -357,4 +397,28 @@ public class DashboardController implements Initializable{
 	// 	        n.setRotate(Math.toDegrees(d));                    
 	// 	    }
 	// 	}
+
+    //update flight computer
+    protected void updateFlightComputer(JSONObject data) {
+        // altitudeA = data.getDouble();
+        if(launch && data.getBoolean("ignite")){
+            launch = false;
+            liftnode.setFill(Color.valueOf("6efa7c"));
+        }
+
+        if(altitudeB < altitudeA) {
+            apogeenode.setFill(Color.valueOf("6efa7c"));
+        }
+
+        // if(data.getBoolean("re")) {
+        //     chutenode.setFill(Color.valueOf("6efa7c"));
+        // }
+
+        if(data.getBoolean("parachute")) {
+            chutenode.setFill(Color.valueOf("6efa7c"));
+        }
+
+
+    }
+
 }
