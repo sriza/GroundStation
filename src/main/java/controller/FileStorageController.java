@@ -40,7 +40,8 @@ public class FileStorageController {
 
     public void storeData(JSONObject data){
         try{
-            fileWriter.write(""+data);
+            fileWriter.write(data+"\n");
+
         } catch (Exception ex){
             System.out.println(ex);
         }

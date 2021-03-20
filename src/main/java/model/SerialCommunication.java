@@ -70,9 +70,15 @@ public class SerialCommunication implements SerialPortEventListener {
                         public void run() {
                             if(data.equals("}")){
                                 // System.out.println(buffer);
+                                try{
                                     DashboardController.getDashboardInstance().plotData(new JSONObject(buffer));
                                     FileStorageController.getFileInstance().storeData(new JSONObject(buffer));
                                     // TableController.getTableInstance().plotData(new JSONObject(buffer.replace(" end1 ","")));
+                                } catch (Exception ex) {
+                                    System.out.println(ex);
+                                    // System.out.println("Not a proper json format");
+                                }
+                                    
                                 buffer = "";
                             }
                         }

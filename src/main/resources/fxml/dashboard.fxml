@@ -95,7 +95,7 @@
          <children>
             <AnchorPane layoutX="23.0" layoutY="24.0" prefHeight="269.0" prefWidth="455.0" style="-fx-background-color: #452d2d; -fx-opacity: 55%; -fx-border-color: #452d2d; -fx-border-radius: 15; -fx-background-radius: 15;">
                <children>
-                  <LineChart fx:id="temperatureLineGraph" layoutX="111.0" layoutY="19.0" prefHeight="220.0" prefWidth="362.0">
+                  <LineChart fx:id="temperatureLineGraph" layoutX="14.0" layoutY="19.0" prefHeight="191.0" prefWidth="452.0">
                     <xAxis>
                       <NumberAxis side="BOTTOM" tickLabelFill="WHITE" />
                     </xAxis>
@@ -103,7 +103,7 @@
                       <NumberAxis side="LEFT" tickLabelFill="#c3c2c2" />
                     </yAxis>
                   </LineChart>
-                  <Label fx:id="tempgraphlabel" layoutX="41.0" layoutY="210.0" prefHeight="26.0" prefWidth="67.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                  <Label fx:id="tempgraphlabel" layoutX="44.0" layoutY="226.0" prefHeight="26.0" prefWidth="418.0" style="-fx-background-color: #452D2D;" text="0" textAlignment="CENTER" textFill="#fcf9f9">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
@@ -112,7 +112,7 @@
             </AnchorPane>
             <AnchorPane layoutX="544.0" layoutY="26.0" prefHeight="269.0" prefWidth="490.0" style="-fx-background-color: #452d2d; -fx-opacity: 55%; -fx-border-color: #452d2d; -fx-border-radius: 15; -fx-background-radius: 15;">
                <children>
-                  <LineChart fx:id="pressureLineGraph" layoutX="135.0" layoutY="14.0" prefHeight="220.0" prefWidth="336.0">
+                  <LineChart fx:id="pressureLineGraph" layoutX="31.0" layoutY="14.0" prefHeight="182.0" prefWidth="440.0">
                     <xAxis>
                       <NumberAxis side="BOTTOM" tickLabelFill="WHITE" />
                     </xAxis>
@@ -120,7 +120,7 @@
                       <NumberAxis side="LEFT" tickLabelFill="#c3c2c2" />
                     </yAxis>
                   </LineChart>
-                  <Label fx:id="pressuregraphlabel" layoutX="39.0" layoutY="208.0" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                  <Label fx:id="pressuregraphlabel" layoutX="33.0" layoutY="233.0" prefHeight="26.0" prefWidth="440.0" style="-fx-background-color: #452D2D;" text="0" textAlignment="CENTER" textFill="#fcf9f9">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
@@ -129,7 +129,7 @@
             </AnchorPane>
             <AnchorPane layoutX="1072.0" layoutY="27.0" prefHeight="269.0" prefWidth="490.0" style="-fx-background-color: #452d2d; -fx-opacity: 55%; -fx-border-color: #452d2d; -fx-border-radius: 15; -fx-background-radius: 15;">
                <children>
-                  <LineChart fx:id="batteryLineGraph" layoutX="131.0" layoutY="25.0" prefHeight="220.0" prefWidth="336.0">
+                  <LineChart fx:id="batteryLineGraph" layoutX="257.0" layoutY="25.0" prefHeight="220.0" prefWidth="210.0">
                      <xAxis>
                       <NumberAxis side="BOTTOM" tickLabelFill="WHITE" />
                     </xAxis>
@@ -137,14 +137,24 @@
                       <NumberAxis side="LEFT" tickLabelFill="#c3c2c2" />
                     </yAxis>
                   </LineChart>
-                  <Label fx:id="batterygraphlabel1" layoutX="56.0" layoutY="207.0" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                  <Label fx:id="batterygraphlabel1" layoutX="15.0" layoutY="207.0" prefHeight="26.0" prefWidth="248.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="batterygraphlabel2" layoutX="52.0" layoutY="95.0" prefHeight="26.0" prefWidth="68.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
+                  <Label fx:id="batterygraphlabel2" layoutX="19.0" layoutY="95.0" prefHeight="26.0" prefWidth="237.0" style="-fx-background-color: #452D2D;" text="0" textFill="#fcf9f9">
                      <font>
                         <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="46.0" text="BATTERY&#10;VOLTAGE" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="12.0" layoutY="158.0" text="BATTERY&#10;TEMPERATURE" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
@@ -198,7 +208,7 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Label layoutX="659.0" layoutY="45.0" prefHeight="26.0" prefWidth="102.0" text="AIR" textFill="#fcf9f9">
+            <Label layoutX="631.0" layoutY="45.0" prefHeight="26.0" prefWidth="102.0" text="IGNITE" textFill="#fcf9f9">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
@@ -228,12 +238,12 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label fx:id="airlabel" layoutX="640.0" layoutY="89.0" text="FALSE" textFill="#fcf9f9">
+            <Label fx:id="ignitelabel" layoutX="640.0" layoutY="89.0" text="FALSE" textFill="#fcf9f9">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label fx:id="timelabel" layoutX="414.0" layoutY="87.0" text="0" textFill="#fcf9f9">
+            <Label fx:id="timelabel" layoutX="401.0" layoutY="87.0" text="0" textFill="#fcf9f9">
                <font>
                   <Font size="22.0" />
                </font>
@@ -253,32 +263,32 @@
          <children>
             <AnchorPane layoutX="26.0" layoutY="17.0" prefHeight="339.0" prefWidth="298.0" style="-fx-background-color: #452d2d; -fx-opacity: 55%; -fx-border-color: #452d2d; -fx-border-radius: 15; -fx-background-radius: 15;">
                <children>
-                  <Label layoutX="23.0" layoutY="34.0" text="ACCELERATION" textFill="#fcf9f9">
+                  <Label layoutX="67.0" layoutY="34.0" text="ACCELERATION" textFill="#fcf9f9">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="accelerationlabel" layoutX="48.0" layoutY="70.0" text="0" textFill="#fcf9f9">
+                  <Label fx:id="accelerationlabel" layoutX="107.0" layoutY="70.0" text="0" textFill="#fcf9f9">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="29.0" layoutY="126.0" text="VELOCITY" textFill="#fcf9f9">
+                  <Label layoutX="73.0" layoutY="126.0" text="VELOCITY" textFill="#fcf9f9">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="velocitylabel" layoutX="56.0" layoutY="163.0" text="0" textFill="#fcf9f9">
+                  <Label fx:id="velocitylabel" layoutX="109.0" layoutY="163.0" text="0" textFill="#fcf9f9">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="altitudelabel" layoutX="61.0" layoutY="261.0" text="0" textFill="#fcf9f9">
+                  <Label fx:id="altitudelabel" layoutX="114.0" layoutY="261.0" text="0" textFill="#fcf9f9">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="31.0" layoutY="218.0" text="ALTITUDE" textFill="#fcf9f9">
+                  <Label layoutX="75.0" layoutY="218.0" text="ALTITUDE" textFill="#fcf9f9">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
