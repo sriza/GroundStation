@@ -53,9 +53,11 @@ public class DashboardController implements Initializable{
     private static Double altitudeA = 0.0;
     private static Double initAlt = 0.0;
     private static Boolean launch = true;
+    private static Boolean delay = false;
     private static Long startTime;
     private static Boolean ignitecheck = true;
     private static Long initTime;
+    private static Long minusTime;
 	
     @FXML
     private LineChart<Number, Number> temperatureLineGraph;
@@ -124,6 +126,9 @@ public class DashboardController implements Initializable{
     private Label timelabel;
 
     @FXML
+    private Label rawdata;
+
+    @FXML
     private Hyperlink loadbutton;
 
     @FXML
@@ -181,21 +186,38 @@ public class DashboardController implements Initializable{
     public void plotData(JSONObject data){
 
         if(init){
-            initTime = System.currentTimeMillis();
-            initAlt = data.getDouble("alt");
-            init = false;
+            initTime  = System.currentTimeMillis();
+            minusTime = initTime + 5*60*1000;
+            initAlt   = data.getDouble("alt");
+            init      = false;
         }
 
         if(ignitecheck && origin && data.getBoolean("ignite")){
             ignitecheck = false;
-            startTime = System.currentTimeMillis();
+            startTime   = System.currentTimeMillis()+2*1000;
         }
 
         data.put("time", Double.parseDouble(""+(System.currentTimeMillis()-initTime)));
 
-        if(startTime!= null){
-            data.put("time_minsec", (""+((System.currentTimeMillis()-startTime)/1000)/60 +" : "+ ((System.currentTimeMillis()-startTime)/1000)%60 ));
+        // if(Long.compare(startTime,System.currentTimeMillis())==0 && !delay){
+        //     System.out.println("here");
+        //     delay =true;
+        // }
+
+        if(startTime!= null & !delay){
+            data.put("time_minsec", ("- "+((startTime - System.currentTimeMillis())/1000)/60 +" : "+ ((startTime-System.currentTimeMillis())/1000)%60 ));
+        }else if(startTime!=null & delay){
+            data.put("time_minsec", ("+ "+((System.currentTimeMillis()-startTime)/1000)/60 +" : "+ ((System.currentTimeMillis()-startTime)/1000)%60 ));
+        }else if(startTime==null){
+            data.put("time_minsec", ("+ 0 : 0 "));
+        }else{
+            data.put("time_minsec", ("- "+((minusTime - System.currentTimeMillis())/1000)/60 +" : "+ ((minusTime - System.currentTimeMillis())/1000)%60 ));
         }
+
+        if(data.getString("time_minsec").contains("- 0 : 0")){
+            delay =true;       
+        }
+
         // data.put("time",System.currentTimeMillis());
         addGraphData(data);
         updateLabel(data);
@@ -212,7 +234,7 @@ public class DashboardController implements Initializable{
    
     private void initTemperatureLineGraph(){
         tempData = new XYChart.Series<>();
-        tempData.setName("temperatureData");
+        tempData.setName("Temperature Data");
         temperatureLineGraph.setAnimated(false);
         temperatureLineGraph.getData().add(tempData);
 
@@ -229,7 +251,7 @@ public class DashboardController implements Initializable{
 
     private void initPressureLineGraph(){
         pressureData = new XYChart.Series<>();
-        pressureData.setName("pressureData");
+        pressureData.setName("Pressure Data");
         pressureLineGraph.setAnimated(false);
         pressureLineGraph.getData().add(pressureData);
 
@@ -267,7 +289,7 @@ public class DashboardController implements Initializable{
         try{
             addTemperatureData(data.getDouble("time")/1000, data.getDouble("temp") );
             addPressureData(data.getDouble("time")/1000, data.getDouble("pressure") );
-            // addBatteryData(data.getDouble("time"), data.getJSONObject("bat").getDouble("per") );
+            addBatteryData(data.getDouble("time"), data.getDouble("battemp"));
         } catch (Exception ex){
             System.out.print("add graph data:" +ex);
         }
@@ -307,16 +329,15 @@ public class DashboardController implements Initializable{
         longlabel.setText(data.getDouble("lon")+"");
 
         altitudelabel.setText(data.getDouble("alt")+" ft");
-        velocitylabel.setText(data.getDouble("speed")+" ft");
-        accelerationlabel.setText(data.getDouble("acc")+" ft");
+        velocitylabel.setText(data.getDouble("speed")+" km/hr");
+        accelerationlabel.setText(data.getDouble("acc")+" m/s\u00B2");
         satlabel.setText(data.getDouble("sats")+"");
         ignitelabel.setText((data.getBoolean("ignite")+"").toUpperCase()+"");
+        rawdata.setText(data+"");
 
         // relabel.setText(data.getBoolean("re")?"TRUE":"FALSE");
         // airlabel.setText(data.getBoolean("air")?"TRUE":"FALSE");
-        if(!ignitecheck){
-            timelabel.setText("T + "+(data.getString("time_minsec")));
-        }
+        timelabel.setText("T "+(data.getString("time_minsec")));
 
         tempgraphlabel.setText(data.getDouble("temp")+"°C");
         pressuregraphlabel.setText(data.getDouble("pressure")+" ft");
@@ -376,7 +397,6 @@ public class DashboardController implements Initializable{
 
         } catch (IOException ex) {
             System.out.println("loader :"+ex);
-
         }
     }
 
@@ -420,34 +440,40 @@ public class DashboardController implements Initializable{
     //update flight computer
     protected void updateFlightComputer(JSONObject data) {
         // altitudeA = data.getDouble();
-        if(launch && data.getBoolean("ignite")){
+        if(launch && data.getBoolean("ignite") && startTime!=null){
             launch = false;
             liftnode.setFill(Color.valueOf("6efa7c"));
+            activestagelabel.setText("Lift off");
         }
 
         if(data.getDouble("alt") < altitudeA) {
             apogeenode.setFill(Color.valueOf("6efa7c"));
+            activestagelabel.setText("Apogee");
         }
 
         // if(data.getBoolean("re")) {
         //     chutenode.setFill(Color.valueOf("6efa7c"));
         // }
 
-        if(data.getString("time_minsec").contains("0 : 10")){
+        if(data.getString("time_minsec").contains("+ 0 : 10")){
             burnoutnode.setFill(Color.valueOf("6efa7c"));
+
+            activestagelabel.setText("Motor Burn Out");
         }
 
         if(data.getBoolean("parachute")) {
             chutenode.setFill(Color.valueOf("6efa7c"));
+
+            activestagelabel.setText("Parachute Deployment");
         }
 
-        // if(Double.compare(data.getDouble("alt"), initAlt)==0 || Double.compare(data.getDouble("alt"), initAlt)<0) {
-        //     landingnode.setFill(Color.valueOf("6efa7c"));
-        // }
+        if(Double.compare(data.getDouble("alt"), altitudeA)==0) {
+            landingnode.setFill(Color.valueOf("6efa7c"));
+
+            activestagelabel.setText("Landing");
+        }
 
         altitudeA = data.getDouble("alt");
-
-
     }
 
 }

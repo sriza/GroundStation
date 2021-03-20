@@ -60,7 +60,7 @@ public class SerialCommunication implements SerialPortEventListener {
 
                 if(data.equals("{"))
                 {
-                    buffer = data;
+                    buffer = buffer+data;
                 }
 
                 if (!data.equals("") && buffer.startsWith("{") && !data.equals("{") ) {
@@ -68,13 +68,15 @@ public class SerialCommunication implements SerialPortEventListener {
                         Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            if(data.equals("}")){
-                                // System.out.println(buffer);
+                            if(data.equals("}") && buffer.contains("}") && buffer.contains("{")){
+
                                 try{
                                     DashboardController.getDashboardInstance().plotData(new JSONObject(buffer));
                                     FileStorageController.getFileInstance().storeData(new JSONObject(buffer));
                                     // TableController.getTableInstance().plotData(new JSONObject(buffer.replace(" end1 ","")));
                                 } catch (Exception ex) {
+                                    System.out.println(buffer);
+
                                     System.out.println(ex);
                                     // System.out.println("Not a proper json format");
                                 }
